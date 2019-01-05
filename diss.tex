@@ -104,6 +104,9 @@
 %%
 \usepackage{checkend}	% better error messages on left-open environments
 \usepackage{graphicx}	% for incorporating external images
+\usepackage{multirow}
+%\usepackage{subcaption}
+\usepackage{amssymb}
 
 %% booktabs: provides some special commands for typesetting tables as used
 %% in excellent journals.  Ignore the examples in the Lamport book!
@@ -142,6 +145,7 @@
 %% environment is ignored.
 %%   \begin{comment} ignored text ... \end{comment}
 \usepackage{comment}
+
 
 %% The natbib package provides more sophisticated citing commands
 %% such as \citeauthor{} to provide the author names of a work,
@@ -192,7 +196,7 @@
 
 %% subfig: provides for including subfigures within a figure,
 %% and includes being able to separately reference the subfigures.
-%\usepackage{subfig}
+\usepackage{subfig}
 
 %% ragged2e: provides several new new commands \Centering, \RaggedLeft,
 %% \RaggedRight and \justifying and new environments Center, FlushLeft,
@@ -282,6 +286,15 @@
 % \renewcommand{\@pnumwidth}{3em}
 % \makeatother
 
+
+%% Ekta added algorithm package
+%\usepackage{algorithm}
+%\usepackage[noend]{algpseudocode}
+%\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+%\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -302,36 +315,36 @@
 %% Document meta-data: be sure to also change the \hypersetup information
 %%
 
-\title{On the Use of the \texttt{ubcdiss} Template}
+\title{CORGIDS: A Correlation-based Generic Intrusion Detection System}
 %\subtitle{If you want a subtitle}
 
-\author{Johnny Canuck}
-\previousdegree{B. Basket Weaving, University of Illustrious Arts, 1991}
-\previousdegree{M. Silly Walks, Another University, 1994}
+\author{Ekta Aggarwal}
+\previousdegree{B. E - M.B.A, Panjab University, 2013}
 
 % What is this dissertation for?
-\degreetitle{Doctor of Philosophy}
+\degreetitle{Master of Applied Science}
 
 \institution{The University of British Columbia}
 \campus{Vancouver}
 
-\faculty{The Faculty of XXX}
-\department{Basket Weaving}
+\faculty{The Faculty of Graduate and PostDoctoral Studies}
+\department{Electrical and Computer Engineering}
 \submissionmonth{April}
-\submissionyear{2192}
+\submissionyear{2019}
 
 % details of your examining committee
-\examiningcommittee{John Smith, Materials Engineering}{Supervisor}
-\examiningcommittee{Mary Maker, Materials Engineering}%
-    {Supervisory Committee Member}
-\examiningcommittee{Nebulous Name, Department}{Supervisory Committee Member}
-\examiningcommittee{Magnus Monolith, Other Department}{Additional Examiner}
+\examiningcommittee{Andre Ivanov, Electrical and Computer Engineering}{Supervisor}
+\examiningcommittee{Karthik Pattabiraman, Electrical and Computer Engineering}{Supervisor}
+%\examiningcommittee{Mary Maker, Materials Engineering}%
+%    {Supervisory Committee Member}
+%\examiningcommittee{Nebulous Name, Department}{Supervisory Committee Member}
+%\examiningcommittee{Magnus Monolith, Other Department}{Additional Examiner}
 
 % details of your supervisory committee
-\supervisorycommittee{Ira Crater, Materials Engineering}%
-    {Supervisory Committee Member}
-\supervisorycommittee{Adeline Long, \textsc{CEO} of Aerial Machine
-    Transportation, Inc.}{Supervisory Committee Member}
+%\supervisorycommittee{Ira Crater, Materials Engineering}%
+%   {Supervisory Committee Member}
+%\supervisorycommittee{Adeline Long, \textsc{CEO} of Aerial Machine
+%    Transportation, Inc.}{Supervisory Committee Member}
 
 %% hyperref package provides support for embedding meta-data in .PDF
 %% files
@@ -374,11 +387,11 @@
 \cleardoublepage
 
 %    4. Lay Summary (Effective May 2017, mandatory - maximum 150 words)
-\include{laysummary}
+%\include{laysummary}
 \cleardoublepage
 
 %    5. Preface
-\include{preface}
+%\include{preface}
 \cleardoublepage
 
 %    6. Table of contents (mandatory - list all items in the preliminary pages
@@ -401,6 +414,7 @@
 %   11. Glossary (optional)
 \input{glossary}	% always input, since other macros may rely on it
 
+
 \textspacing		% begin one-half or double spacing
 
 %   12. Acknowledgements (optional)
@@ -415,7 +429,13 @@
 
 %    1. Introduction
 \include{intro}
-
+\include{relatedwork}
+\include{approach}
+\include{experimentalworkflow}
+\include{attacks}
+\include{evaluation}
+\include{discussion}
+\include{conclusion}
 %    2. Main body
 % Generally recommended to put each chapter into a separate file
 %\include{relatedwork}
@@ -427,18 +447,20 @@
 %    3. Notes
 %    4. Footnotes
 
-%    5. Bibliography
-\begin{singlespace}
+% 5. Bibliography
+\begin{onehalfspacing}
 \raggedright
-\bibliographystyle{abbrvnat}
+\bibliographystyle{ieeetr}
+\bibliography{E:\/Ekta\/CORGIDSPapers\/Thesis\/ubcdiss}
 \bibliography{biblio}
-\end{singlespace}
+\end{onehalfspacing}
 
 \appendix
 %    6. Appendices (including copies of all required UBC Research
 %       Ethics Board's Certificates of Approval)
 %\include{reb-coa}	% pdfpages is useful here
-\include{appendix}
+%% Ekta commented
+%\include{appendix}
 
 \backmatter
 %    7. Index

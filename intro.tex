@@ -4,11 +4,41 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
-\begin{epigraph}
-    \emph{If I have seen farther it is by standing on the shoulders of
-    Giants.} ---~Sir Isaac Newton (1855)
-\end{epigraph}
+\section{Motivation}
+\label{sec:Motivation}
+Cyber-Physical Systems (CPS) are systems consisting of software and physical components knitted together and which are also tightly coupled to the environment in which operate. CPS operate by taking in parameters from the physical world and software commands, and producing actions which alter the state of the environment around them. Some examples of CPS are smart grids, smart automobiles and drones. Lately, CPS have gained ubiquitous popularity among the masses, which has led to abrupt increase in the usage of these devices in our day-to-day life. These CPS are different from the typical computer systems because they operate in a physical environment and their properties must conform to laws of physics. Also, CPS are built to solve a specific problem and are not multi-purpose like the typical computer systems.
 
+As CPS are built keeping in mind a particular output, they are often lacking in computing aspects such as memory, computational power and battery. Therefore, due to these constraints and the desire to produce a large number of CPS, the security aspect is lagging behind.[ADD REF] As a result CPS have been targets of security attacks due to their safety-critical nature and relative lack of protection. The advent of interconnected CPS to the Internet (also known as the Internet of Things) has exacerbated their vulnerability as they obviate the need for attackers to have physical access to the CPS. Attacks on CPS such as the smart grid~\cite{skopik2012survey}, smart cars~\cite{checkoway2011comprehensive} and smart medical devices~\cite{leavitt2010researchers,radcliffe2011hacking} have been demonstrated in the recent past. 
+Therefore, there is a compelling need to protect CPS from security attacks. 
+
+\section{Approach}
+\label{sec:Approach}
+
+Intrusion Detection Systems (IDS) have been used for protecting computer systems from security attacks, including CPS~\cite{lu2015towards, mitchell2015behavior, bernieri2016testbed}. IDS work by monitoring the activity of the system for which they are deployed and raise alarm when they detect a malicious intent. Traditional forms of IDS are signature-based, where signatures of known attacks are compared against the operations of the system to identify attacks. Unfortunately, signature-based IDS are a poor fit for CPS as the attacks are often tailored to each kind of CPS, and hence cannot be described by generic signatures. Further, due to the remote and often disconnected nature of their operation, the attack database in CPS cannot be updated frequently unlike traditional computer systems. Finally, a motivated attacker can launch hitherto unknown attacks against a CPS, thereby evading detection by signature-based schemes. 
+
+In contrast to signature-based IDS, anomaly based IDS extract a model of a system's behavior and detect any deviations from the extracted model as an attack. Such IDS do not need an attack database, and can hence detect hitherto unknown attacks. Because CPS have constrained behaviors, it is often straightforward to derive anomaly based IDS for them, making these systems a good match for CPS. Unfortunately, anomaly based systems exhibit high rates of false-positives in practice, as learning a stable model of the system is often challenging. Therefore, some researchers have proposed using physics-based models for anomaly detection models for intrusion detection in CPS~\cite{ mitchell2012specification,mitchell2014adaptive,choudhari2013stability,chen2018learning,zohrevand2016hidden}. The notion is that because CPS interact closely with their physical environments, they need to follow laws of physics, which can in turn be used as the detection model. 
+Efforts have been made to use the physical properties of the power grid~\cite{choudhari2013stability,paul2014unified}, unmanned aircraft vehicles (UAVs)~\cite{mitchell2012specification} and water treatment systems~\cite{adepu2016using} to build a model which represents the expected behavior of the CPS. However, in the prior work, the IDS is designed specifically for a particular CPS. Therefore, the above solutions cannot be easily generalized to other CPS, as the process of finding an appropriate model is both time consuming and effort intensive for developers. 
+
+In this work, the {\em logical correlations} among the physical properties of the CPS is considered as the model for anomaly-based IDS. The hypothesis is that physical properties exhibit deterministic and predictable correlations among themselves, as they have to adhere to the laws of physics. For example, consider the case of an Unmanned Aerial Vehicle (UAV), which needs to follow Newton's laws of motion during flight. Some physical properties of an UAV are: distance travelled, altitude, speed, battery life left and flight time. When an UAV is flying at a fixed altitude, it has a non-zero speed due to which the distance traveled and flight time increases, while the battery life left in the UAV decreases. These relationships encompass the logical correlations among the physical properties of the UAV. If during flight it is observed that the battery life left in the UAV is not decreasing while the speed of the UAV is non-zero, this would imply that there is some anomaly in the system, which potentially indicates an attack.
+
+\section{Contributions}
+\label{sec:Contributions}
+
+This research proposes a generic intrusion detection system capable of detecting security attacks by inferring the logical correlations of the system and checking if they adhere to a predefined framework. Hidden Markov Models (HMMs) are used to automatically infer the logical correlations among the physical properties of the system with no a priori knowledge of the physical laws adhered to by the system or any intervention by the programmer. The HMM identifies a state as malicious by detecting either an undesired data correlation or lack of an expected data correlation among its physical properties. HMMs are used as they are good at detecting outliers, and are typically used to model time-based systems (Section \autoref{sec:HMM_explain}).  
+Though other papers have used logical correlations to detect anomalies~\cite{iturbe2017feasibility,krotofil2015process,chen2018learning,zohrevand2016hidden,krotofil2015process,iturbe2017feasibility}, none of them have used HMMs as the core to build a generic IDS. \textit{To the best of my knowledge, CORGIDS is the first generic intrusion detection system which uses HMMs to infer logical correlations exhibited by the system to determine if an intrusion has occurred.}
+
+
+The contributions are:
+\begin{enumerate}
+\item Proposition of the use of logical correlations among the physical properties of a CPS to detect intrusions, and use HMMs to infer the logical correlations.
+\item Designed a CORrelation based Generic Intrusion Detection System (CORGIDS), using HMMs to detect intrusions. Also, demonstrated its use on two CPS test-beds, namely i) an UAV, and ii) a smart artificial pancreas platform.
+\item Evaluated the effectiveness of CORGIDS by performing five targeted attacks on the above mentioned CPS. Found that CORGIDS is successfully able to detect all five attacks, and has lower false-positive and false-negative rates than other intrusion detection techniques.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\endinput
 This document provides a quick set of instructions for using the
 \class{ubcdiss} class to write a dissertation in \LaTeX. 
 Unfortunately this document cannot provide an introduction to using
