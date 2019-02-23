@@ -1,0 +1,203 @@
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
+
+\chapter{Comparison with related work}
+\label{ch:comparisonwithrelatedwork}
+
+To provide an apples-to-apples comparison with the related work, we choose those IDS mentioned in our related work, which are similar to CORGIDS. Of the related work presented in this research, ARTINALI is the only IDS which can be used for comparison purposes as it is a generic IDS for CPS. All the other IDS discussed were built keeping in mind a particular CPS, thus were incapable of being applied to the test-beds on which CORGIDS demonstrated its results.
+
+In this chapter, we first discuss how we carry out the comparison with ARTINALI and then the results achieved. We chose to use the two test-beds - Drone and SAP - used in this study as the base for the comparison with related work. To provide an even playing ground and completeness, we conducted this experiment by taking into account all the attacks that were used in both the IDS - ARTINALI and CORGIDS. For example, for the case of SAP platform which was common in both the IDS experiments, we consolidated the attacks from both the IDS, to form a super set which was eventually used for evaluation. As described in ~\autoref{ch:Attacks}, CORGIDS uses only targeted attacks, such as battery tampering in case of the UAV to demonstrate its efficacy. On the other hand, ARTINALI uses both targeted and arbitrary(fault injection) attacks to gauge its performance.
+So, for completeness we use both targeted and arbitrary attacks into account to compare ourselves with the related work (ARTINALI).
+
+We begin by experimenting on one test-bed at a time.
+
+\section{Comparison on SAP Platform}
+As stated above, SAP platform is common in both ARTINALI and CORGIDS, which means that we didn't have to select the data and the events required by ARTINALI for constructing its IDS, as they were already present from the study conducted in ~\cite{aliabadi2017artinali}. Also, for CORGIDS we had already established the physical invariants that would be used for intrusion detection in ~\autoref{sec6:Evaluation}, so we continued using those for this comparison. Now, coming on to the attacks which were used to gauge the performance of the two IDS. Going through ARTINALI's targeted attacks on SAP platform - CGM Spoofing and Basal Tampering -, it was observed that they were the same targeted attacks that used for the purpose of this study in ~\autoref{ch:Attacks} (Glucose Spoofing and Insulin Tampering). Therefore, for the targeted attacks category, only two attacks had to be performed. On the other hand, as CORGIDS did not perform any arbitrary attacks and ARTINALI had used them in their research, we decided to also use those attacks for the comparison.
+
+We first discuss the details of the targeted attacks followed by their results, which is followed by a similar analysis for the arbitrary attacks.
+
+\subsection{Targeted attacks}
+We perform 2 targeted attacks on SAP platform and then use the two IDS - ARTINALI and CORGIDS - one by one to detect intrusion. The attacks carried out are CGM Spoofing or Glucose Spoofing, and Basal Tampering or Insulin Tampering. But before we start the intrusion detection, we need to model the intrusion detector. For modeling the intrusion detector, both ARTINALI and CORGIDS require training traces. The number of training traces required by the IDS govern the quality of the IDS constructed which eventually effects its performance. Therefore, we vary the ratio of the number of training traces to number of testing traces as shown in ~\autoref{sec6:Evaluation}. ARTINALI also uses different number of training traces to select the IDS model which generates lowest FP and FN.
+
+Hence, we vary the number of training traces to the number of testing traces for both the IDS - 50:50, 60:40, 70:30 and 80:20. The results shown in ~\autoref{tab:ARTINALI_SAP_COMP}, ~\autoref{tab:CORGIDS_SAP_COMP}, ~\autoref{tab:ARTINALI_SAP_COMP_BASAL}, ~\autoref{tab:CORGIDS_SAP_COMP_INSULIN} are achieved after 5 fold cross-validation.
+
+\begin{table}
+\centering
+  \caption{Results of intrusion detection by ARTINALI for CGM Spoofing attack on SAP platform}
+  \label{tab:ARTINALI_SAP_COMP}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Ratio}&\textbf{FP}&\textbf{FN}\\
+    \hline
+    50\%: 50\% & 60.15 & 20.80\\
+    \hline
+    60\%: 40\% & 37.50 & 12.60\\
+    \hline
+    70\%: 30\% & 18.50 & 4.20\\
+    \hline
+    80\%: 20\% & 19.70 & 4.60\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{table}
+\centering
+  \caption{Results of intrusion detection by CORGIDS for Glucose Spoofing attack on SAP platform}
+  \label{tab:CORGIDS_SAP_COMP}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Ratio}&\textbf{FP}&\textbf{FN}\\
+    \hline
+    50\%: 50\% & 35.50 & 40.20\\
+    \hline
+    60\%: 40\% & 17.20 & 25.00\\
+    \hline
+    70\%: 30\% & 3.80 & 8.40\\
+    \hline
+    80\%: 20\% & 4.00 & 8.50\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{table}
+\centering
+  \caption{Results of intrusion detection by ARTINALI for Basal Tampering attack on SAP platform}
+  \label{tab:ARTINALI_SAP_COMP_BASAL}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Ratio}&\textbf{FP}&\textbf{FN}\\
+    \hline
+    50\%: 50\% & 41.66 & 45.00\\
+    \hline
+    60\%: 40\% & 28.00 & 22.50\\
+    \hline
+    70\%: 30\% & 15.50 & 6.50\\
+    \hline
+    80\%: 20\% & 15.70 & 8.60\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{table}
+\centering
+  \caption{Results of intrusion detection by CORGIDS for Insulin Tampering attack on SAP platform}
+  \label{tab:CORGIDS_SAP_COMP_INSULIN}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Ratio}&\textbf{FP}&\textbf{FN}\\
+    \hline
+    50\%: 50\% & 33.75 & 42.20\\
+    \hline
+    60\%: 40\% & 18.75 & 23.50\\
+    \hline
+    70\%: 30\% & 6.50 & 5.20\\
+    \hline
+    80\%: 20\% & 8.00 & 8.50\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+From the tables above, we can see that performance of both, ARTINALI and CORGIDS improve as the ratio of number of training traces to number of testing traces increases. This is because both the IDS require training traces to build their intrusion detection model and as the number of training traces increase, the IDS model has more data and greater number of situations which it can use to observe the behavior of system. However, it can also be seen that CORGIDS performs better than ARTINALI as it achieves lower FP and FN when the model is trained using higher number of training traces. For example, for Basal Tampering attack, ARTINALI incurs 15.50\% and 6.50\% FP and FN respectively, which is higher than CORGIDS 6.50\% FP and 5.20\% FN values. 
+
+During the experiments, it was observed that ARTINALI only relies on the abnormalities in the invariants to detect intrusion. Therefore, if there is just one invariant broken, it marks it as an anomalous trace. However in CORGIDS, the minimum threshold to generate an alarm is maintained, which helps in minimizing the FP and FN, and hence increasing its performance. Also, ARTINALI works by taking into account the values of data variables encountered in the training trace and builds an IDS from that. It does not deduce the behavior/interconnections of data variables from the training data, which is the reason that higher FP and FN are observed for ARTINALI as compared to CORGIDS.
+
+As stated previously, the attacks carried out were the same for both ARTINALI and CORGIDS and both the techniques are able to detect the attacks, though with different FP and FN rate. The difference in the FP and FN however arose due to the difference in ARTINALI and CORGIDS approach. ARTINALI works by collecting all the values of data variables provided in the training traces. For example, during training ARTINALI finds that for an "Event:foo", the value of a variable "a" can be either of the three values (X,XX,XXX). It uses this information for building the invariants which are used to detect intrusion. However, if at run-time, it finds the value of variable "a" is not X or XX or XXX, it generates an alert and marks it as an abnormality. However, CORGIDS, it tries to learn the behavior of the system from the training traces. It is not dependent on particular values of variables, rather it tries build a bigger picture and deduces the behavior and not the value of the variable, which is important in CPS. Which is why as the ratio of training traces increases from 50:50\% to 70:30\% or 80:20\%, we see a larger decrease in CORGIDS FP and FN (approximately 9 times) as compared to CORGIDS.
+
+\subsection{Arbitrary attacks}
+In this subsection we discuss the arbitrary attacks and their effect on SAP platform with the performance of ARTINALI and CORGIDS. The arbitrary attacks were used by ARTINALI to measure its performance, hence for completeness and fairness, we test both the IDS on the other set of attacks - Arbitrary attacks. 3 attacks were carried out namely, Data mutation, Branch flipping and artificial delay insertion.
+
+A break up of the attacks and how the system responded to them is shown in ~\autoref{tab:ARBITRARY_SAP}.
+
+
+\begin{table}
+\centering
+  \caption{Arbitrary attacks on SAP platform and its response}
+  \label{tab:ARBITRARY_SAP}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \toprule
+    \textbf{Attack}&\textbf{Crash}&\textbf{Hang}&\textbf{SDC}&\textbf{No corruption}&\textbf{Total attacks}\\
+    \hline
+    Data mutation & 22 & 20 & 18 & 25 & 85\\
+    \hline
+    Branch flipping & 8 & 2 & 5 & 3 & 18\\
+    \hline
+    Artificial delay insertion & 4 & 5 & 3 & 5 & 17\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+
+All the attacks were carried out randomly and manually for the SAP system, as the fault injection tool[CITE LLFI] didn't support the language in which the system was written i.e., JavaScript. During the attacks the behavior of the system was observed and was classified into 4 classes, mentioned below:
+
+\begin{itemize}
+\item Crash - It means that by the introduction of the current attack, the system resulted in a crash.
+\item Hang - Means that after the introduction of the attack the system failed to move forward or do anything(was unable to perform any operation).
+\item SDC- Silent Data Corruption - Means that during the attack the internals of the system deviated from its non-malicious outcome. However, the system continued to function.
+\item No Corruption - In this attack, no visible changes were observed during run-time, which could differentiate it from the non-malicious system behavior.
+\end{itemize}
+
+Only SDC and no corruption attacks are taken into account while judging the performance of both the tools, as they are difficult to detect and need an IDS. Also, the other two system behaviors (crash and hang) are easily detected and they don't necessarily need an IDS to observe that something is wrong with the system. The result of arbitrary attacks being detected by both the IDS, on SAP platform are shown in ~\autoref{tab:ARTINALI_SAP_ARBITRARY}, ~\autoref{tab:CORGIDS_SAP_ARBITRARY}.
+
+
+\begin{table}
+\centering
+  \caption{Results of intrusion detection by ARTINALI for Arbitrary attacks on SAP platform}
+  \label{tab:ARTINALI_SAP_ARBITRARY}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Attack}&\textbf{FP}&\textbf{FN}\\
+    \hline
+    Data mutation & 14.0 & 11.62\\
+    \hline
+    Branch flipping & 12.50 & 12.50\\
+    \hline
+    Artificial delay insertion & 0.0 & 12.50\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{table}
+\centering
+  \caption{Results of intrusion detection by CORGIDS for Arbitrary attacks on SAP platform}
+  \label{tab:CORGIDS_SAP_ARBITRARY}
+  \scalebox{0.9}{
+  \begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Attack}&\textbf{FP}&\textbf{FN}\\
+    \hline
+    Data mutation & 7.0 & 4.65\\
+    \hline
+    Branch flipping & 12.50 & 0.0\\
+    \hline
+    Artificial delay insertion & 12.50 & 12.50\\
+    \hline
+\end{tabular}
+}
+\end{table}
+
+The results show that CORGIDS performed better in data mutation and branch flipping attack as compared to ARTINALI. It was mainly because ARTINALI does not take into account the change in the behavior, rather it works with the change in the value of particular data variables. Therefore, in the case of data mutation attack, if the variables that were being tempered did not belong to the variables that were used in intrusion detection, the attack went by unnoticed. However, for CORGIDS even if physical variables that are used to detect intrusion were not mutated, due to the trickling effect the, change in data variable led to in some cases a change in the physical variable which was detected by CORGIDS.
+
+On the other hand, for the artificial delay insertion attack, it was observed that ARTINALI IDS achieved better performance than CORGIDS. It was because of the lesser effect of the time change on variables that were monitored by CORGIDS. However, ARTINALI also uses time invariants to detect intrusion, therefore it was able to detect intrusion easily.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\endinput
