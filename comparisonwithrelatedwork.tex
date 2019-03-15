@@ -4,42 +4,42 @@
 \chapter{Comparison with related work}
 \label{ch:comparisonwithrelatedwork}
 
-To provide an apples-to-apples comparison with the related work, we choose those IDS which are similar to CORGIDS from our related work. Therefore, making ARTINALI the only IDS which can be used for comparison purposes as it is generic. All the other IDS discussed were built keeping in mind a particular CPS, thus were incapable of being applied to any other test-beds.
+To provide an apples-to-apples comparison with the related work, we choose those \ac{IDS} which are similar to \ac{CORGIDS} from our related work. Therefore, making ARTINALI the only \ac{IDS} which can be used for comparison purposes as it is generic. All the other \ac{IDS} discussed were built keeping in mind a particular \ac{CPS}, thus were incapable of being applied to any other test-beds.
 
 \section{Experiments background}
 In this section, we discuss how we carry out the comparison with ARTINALI which includes the test-beds, attacks carried out, collection of system traces and determining invariants. 
 \begin{itemize}
-\item Test-beds - We chose to use two test-beds - UAV and SAP - used in this study as the base for the comparison. These test-beds are valid for comparison because CORGIDS already demonstrated its efficacy on these platforms, and ARTINALI had used SAP to demonstrate its. Also, as ARTINALI is a generic IDS it can be used to detect intrusion for a CPS such as UAV, thus making it  a valid choice of test-bed.
+\item Test-beds - We chose to use two test-beds - \ac{UAV} and \ac{SAP} - used in this study as the base for the comparison. These test-beds are valid for comparison because \ac{CORGIDS} already demonstrated its efficacy on these platforms, and ARTINALI had used \ac{SAP} to demonstrate its. Also, as ARTINALI is a generic \ac{IDS} it can be used to detect intrusion for a \ac{CPS} such as \ac{UAV}, thus making it  a valid choice of test-bed.
 
-\item Attacks - To provide an even playing ground and completeness, we conducted this experiment by taking into account all the attacks that were used in both the IDS - ARTINALI and CORGIDS. Particularly, we consolidate targeted and arbitrary attacks from ARTINALI and targeted attacks from CORGIDS to form a super set which was eventually used for evaluation. For example, for the case of SAP platform which was common for both the IDS, we combined the targeted attacks from both IDS - ARTINALI and CORGIDS - which were used to measure the detection capabilities. However, as CORGIDS did not use arbitrary attacks as mentioned in ~\autoref{ch:Attacks}, all the arbitrary attacks from ARTINALI were used as a measure for both the IDS.
+\item Attacks - To provide an even playing ground and completeness, we conducted this experiment by taking into account all the attacks that were used in both the \ac{IDS} - ARTINALI and \ac{CORGIDS}. Particularly, we consolidate targeted and arbitrary attacks from ARTINALI and targeted attacks from \ac{CORGIDS} to form a super set which was eventually used for evaluation. For example, for the case of \ac{SAP} platform which was common for both the \ac{IDS}, we combined the targeted attacks from both \ac{IDS} - ARTINALI and \ac{CORGIDS} - which were used to measure the detection capabilities. However, as \ac{CORGIDS} did not use arbitrary attacks as mentioned in ~\autoref{ch:Attacks}, all the arbitrary attacks from ARTINALI were used as a measure for both the \ac{IDS}.
 Arbitrary attacks or fault injections represent the building blocks of the attacks that can occur as zero day attacks, as opposed to the targeted attacks which are designed to exploit a particular feature of the system under attack. The arbitrary attacks used by ARTINALI are:
 
 \begin{itemize}
-\item Data mutation, these attacks alter the run-time values of data variables in the code of the CPS.
+\item Data mutation, these attacks alter the run-time values of data variables in the code of the \ac{CPS}.
 \item Branch flipping attacks randomly flip branch conditions to lead to an abnormal execution flow in the \ac{CPS}.
-\item Artificial delay insertion adds some delay in normal execution of the program in CPS.
+\item Artificial delay insertion adds some delay in normal execution of the program in \ac{CPS}.
 \end{itemize}
 
-As a result of the above mentioned arbitrary attacks, following observations were made in the CPS, i) \textit{Crash}, by the introduction of the attack, the system resulted in a crash, ii) \textit{Hang}, means that after the introduction of the attack the system failed to do anything (was unable to perform any operation), iii) \textit{\ac{SDC}}, during the attack the operation of the system deviated from its non-malicious outcome, however, the system continued to function, and iv) \textit{No Corruption}, no visible changes were observed during run-time, which could differentiate it from the non-malicious system behavior. Only \ac{SDC} and no corruption attacks are taken into account while judging the performance of both the IDS, as they are difficult to detect and need an IDS. Also, the other two system behaviors (crash and hang) are easily detected and they don't necessarily need an IDS to observe that something is wrong with the system. 
+As a result of the above mentioned arbitrary attacks, following observations were made in the \ac{CPS}, i) \textit{Crash}, by the introduction of the attack, the system resulted in a crash, ii) \textit{Hang}, means that after the introduction of the attack the system failed to do anything (was unable to perform any operation), iii) \textit{\ac{SDC}}, during the attack the operation of the system deviated from its non-malicious outcome, however, the system continued to function, and iv) \textit{No Corruption}, no visible changes were observed during run-time, which could differentiate it from the non-malicious system behavior. Only \ac{SDC} and no corruption attacks are taken into account while judging the performance of both the \ac{IDS}, as they are difficult to detect and need an \ac{IDS}. Also, the other two system behaviors (crash and hang) are easily detected and they don't necessarily need an \ac{IDS} to observe that something is wrong with the system. 
 
-For this comparison, we manually seed each of these faults in the source code of the respective test-beds, by randomly sampling the corresponding program points in the program’s code of the \ac{CPS}. Although, this task could be automated by a fault injection tool (e.g., LLFI [ADD REF HERE]), however, the languages in which the two test-beds were implemented, JavaScript and C++, were not supported by the existing ones. We manually chose the fault injection points randomly before performing the experiment.
+For this comparison, we manually seed each of these faults in the source code of the respective test-beds, by randomly sampling the corresponding program points in the program’s code of the \ac{CPS}. We manually chose the fault injection points randomly before performing the experiment.
 
-\item Collection of system traces - To avoid any bias in the traces which were used for building the IDS and consecutively for checking intrusion, we used the same flight plans for both the IDS for UAV platform and the same glucose readings for the SAP platform. These traces were then randomly divided into 70\%:30\% ratio for training and testing purposes for each IDS.
+\item Collection of system traces - To avoid any bias in the traces which were used for building the \ac{IDS} and consecutively for checking intrusion, we used the same flight plans for both the \ac{IDS} for \ac{UAV} platform and the same glucose readings for the \ac{SAP} platform. These traces were then randomly divided into 70\%:30\% ratio for training and testing purposes for each \ac{IDS}.
 
-\item Choosing invariants for modeling IDS - As CORGIDS had previously used the two test-beds for intrusion detection, we already had the physical variables to be used for modeling/deducing the CPS behavior. ARTINALI, on the other hand, had data, event and time invariants for only the SAP platform, therefore, we had to extract those invariants for the UAV platform. ARTINALI defines an event as "an instance of an action that leads to a change of condition., e.g. message send/receive, sensor data reading or activating insulin injection". Understanding this definition and also the CPS traces they collected for smart meter and SAP test-beds, formed the basis of choosing the invariants for UAV platform. 31 system calls were found which were marked as events, and for those events(function calls), the data variables that were present inside became the data invariants. For instance, functions which read the sensor data in the UAV (latitude, longitude, speed etc) were chosen as events. Following this, the Data-Event-Time interplay was calculated by ARTINALI's Github code[ADD REF HERE], after we provide the CPS traces required.
+\item Choosing invariants for modeling \ac{IDS} - As \ac{CORGIDS} had previously used the two test-beds for intrusion detection, we already had the physical variables to be used for modeling/deducing the \ac{CPS} behavior. ARTINALI, on the other hand, had data, event and time invariants for only the \ac{SAP} platform, therefore, we had to extract those invariants for the \ac{UAV} platform. ARTINALI defines an event as "an instance of an action that leads to a change of condition., e.g. message send/receive, sensor data reading or activating insulin injection". Understanding this definition and also the \ac{CPS} traces they collected for smart meter and \ac{SAP} test-beds, formed the basis of choosing the invariants for \ac{UAV} platform. 31 system calls were found which were marked as events, and for those events(function calls), the data variables that were present inside became the data invariants. For instance, functions which read the sensor data in the \ac{UAV} (latitude, longitude, speed etc) were chosen as events. Following this, the Data-Event-Time interplay was calculated by ARTINALI's Github code\cite{ARTINALI}, after we provide the \ac{CPS} traces required.
 \end{itemize}
 
-\section{Comparison on UAV Platform}
-This section consists of the attacks - targeted and arbitrary - which were used to determine the efficiency of both ARTINALI and CORGIDS for the UAV platform. We discuss the targeted and arbitrary attacks one by one.
+\section{Comparison on \ac{UAV} Platform}
+This section consists of the attacks - targeted and arbitrary - which were used to determine the efficiency of both ARTINALI and \ac{CORGIDS} for the \ac{UAV} platform. We discuss the targeted and arbitrary attacks one by one.
 
 
 \subsection{Targeted attacks}
-The attacks - battery tampering, flooding and distance spoofing - described in this section are targeted attacks from CORGIDS, as ARTINALI did not have any experiments on the UAV platform.
+The attacks - battery tampering, flooding and distance spoofing - described in this section are targeted attacks from \ac{CORGIDS}, as ARTINALI did not have any experiments on the \ac{UAV} platform.
 The results of these attacks are shown in~\autoref{tab:ARTINALI_UAV_TARGETED} and ~\autoref{tab:CORGIDS_UAV_TARGETED}.
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by ARTINALI for Targeted attacks on UAV platform}
+  \caption{Results of intrusion detection by ARTINALI for Targeted attacks on \ac{UAV} platform}
   \label{tab:ARTINALI_UAV_TARGETED}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
@@ -58,7 +58,7 @@ The results of these attacks are shown in~\autoref{tab:ARTINALI_UAV_TARGETED} an
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by CORGIDS for Targeted attacks on UAV platform}
+  \caption{Results of intrusion detection by \ac{CORGIDS} for Targeted attacks on \ac{UAV} platform}
   \label{tab:CORGIDS_UAV_TARGETED}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
@@ -75,19 +75,19 @@ The results of these attacks are shown in~\autoref{tab:ARTINALI_UAV_TARGETED} an
 }
 \end{table}
 
-As can be observed from~\autoref{tab:ARTINALI_UAV_TARGETED}, ~\autoref{tab:CORGIDS_UAV_TARGETED}, CORGIDS consistently got fewer FP and FN as compared to ARTINALI. This was primarily because these targeted attacks were specifically exploiting the physical properties of the UAV, which CORGIDS uses to detect intrusion. On the other hand, as ARTINALI works by determining the Data-Event-Time interplay in the trace of the CPS, the change in the physical property did not lead to sizable change in the data part of the invariants, which ultimately led to a lesser detection rate for ARTINALI.
+As can be observed from~\autoref{tab:ARTINALI_UAV_TARGETED}, ~\autoref{tab:CORGIDS_UAV_TARGETED}, \ac{CORGIDS} consistently got fewer \ac{FP} and \ac{FN} as compared to ARTINALI. This was primarily because these targeted attacks were specifically exploiting the physical properties of the \ac{UAV}, which \ac{CORGIDS} uses to detect intrusion. On the other hand, as ARTINALI works by determining the Data-Event-Time interplay in the trace of the \ac{CPS}, the change in the physical property did not lead to sizable change in the data part of the invariants, which ultimately led to a lesser detection rate for ARTINALI.
 
-For instance, in the case of battery tampering attack, the rate of battery depletion was halved multiple times for a random small amount of time during the UAV operation. As CORGIDS operates by deducing the CPS behavior, during the training phase it deduced the correlation of battery depletion with other physical parameters. Therefore, when at run-time, it observed that though for a small amount of duration, the battery depletion rate was different it raised an alarm. On the other hand, during the training phase of ARTINALI, it took into consideration the Data-Event-Time interplay. Though the data variable for one of the D\textbar E invariant included the value of battery left in the CPS, still it lead to a lower intrusion detection rate. This was probably because the effect of the change in battery value was small as compared to other invariants that ARTINALI took into account for this CPS. The D\textbar E invariant in ARTINALI works by clubbing the values that a variable can take for a particular event(system call/function), the values of battery level that it observed was not out of the park, instead only the rate of change of those values was different. Similar was the case for the D\textbar T invariant, which did not always pick up that a particular value of data variable(battery value in this case) was supposed to be within a particular time slot. The change in the rate of battery value depletion did not have any noticeable change in the E\textbar T invariant which could be because the interplay among the event and time were untouched in the targeted attacks performed. Similar observation was made for distance spoofing attack in which the battery depletion rate from battery tampering attack was replaced by the distance covered by the drone.
+For instance, in the case of battery tampering attack, the rate of battery depletion was halved multiple times for a random small amount of time during the \ac{UAV} operation. As \ac{CORGIDS} operates by deducing the \ac{CPS} behavior, during the training phase it deduced the correlation of battery depletion with other physical parameters. Therefore, when at run-time, it observed that though for a small amount of duration, the battery depletion rate was different it raised an alarm. On the other hand, during the training phase of ARTINALI, it took into consideration the Data-Event-Time interplay. Though the data variable for one of the D\textbar E invariant included the value of battery left in the \ac{CPS}, still it lead to a lower intrusion detection rate. This was probably because the effect of the change in battery value was small as compared to other invariants that ARTINALI took into account for this \ac{CPS}. The D\textbar E invariant in ARTINALI works by clubbing the values that a variable can take for a particular event(system call/function), the values of battery level that it observed was not out of the park, instead only the rate of change of those values was different. Similar was the case for the D\textbar T invariant, which did not always pick up that a particular value of data variable(battery value in this case) was supposed to be within a particular time slot. The change in the rate of battery value depletion did not have any noticeable change in the E\textbar T invariant which could be because the interplay among the event and time were untouched in the targeted attacks performed. Similar observation was made for distance spoofing attack in which the battery depletion rate from battery tampering attack was replaced by the distance covered by the drone.
 
-The flooding attacks involved re-sending some of the packets to the GCS which did not originate from the UAV. Note, the data contained in the extra packets that were sent by the attacker in this attack had the same data as some of the previous packets. CORGIDS, after being trained by benign traces in the training phase, led to generate an alarm when the additional data packets being received led to change in the probability of current trace belonging to a benign one, though the values of the physical properties were same. This was because the values of physical properties which were received multiple times led to change in the correlation of "flightTime" with the other variables. In the duplicate packets, the value of "flightTime" was the same as found in the benign ones, therefore it led to an overall correlation imbalance, flagging out this occurrence. However, in ARTINALI the D\textbar E invariants didn't catch the flooding attack because the values present in the traces/data packets were valid, though there were a greater number of packets. So, the D\textbar E invariant didn't reflect much change, however, E\textbar T invariants often lead to detect intrusion, as the time range within which an event had to occurred had changed due to the excessive number of same packets. Similarly, D\textbar T invariants also sometimes alerted that the trace is anomalous because with the duplicate packets the timeline of the operation of the CPS was tweaked which led to change in the value that a data variable should have in a given time slot (D\textbar T invariant).
+The flooding attacks involved re-sending some of the packets to the \ac{GCS} which did not originate from the \ac{UAV}. Note, the data contained in the extra packets that were sent by the attacker in this attack had the same data as some of the previous packets. \ac{CORGIDS}, after being trained by benign traces in the training phase, led to generate an alarm when the additional data packets being received led to change in the probability of current trace belonging to a benign one, though the values of the physical properties were same. This was because the values of physical properties which were received multiple times led to change in the correlation of "flightTime" with the other variables. In the duplicate packets, the value of "flightTime" was the same as found in the benign ones, therefore it led to an overall correlation imbalance, flagging out this occurrence. However, in ARTINALI the D\textbar E invariants didn't catch the flooding attack because the values present in the traces/data packets were valid, though there were a greater number of packets. So, the D\textbar E invariant didn't reflect much change, however, E\textbar T invariants often lead to detect intrusion, as the time range within which an event had to occurred had changed due to the excessive number of same packets. Similarly, D\textbar T invariants also sometimes alerted that the trace is anomalous because with the duplicate packets the timeline of the operation of the \ac{CPS} was tweaked which led to change in the value that a data variable should have in a given time slot (D\textbar T invariant).
 
 \subsection{Arbitrary attacks}
-The attacks - data mutation, branch flipping and artificial delay insertion - described in this section are the arbitrary attacks used by ARTINALI in their experiments. As CORGIDS did not previously use fault injections, therefore, only arbitrary attacks from ARTINALI are being considered for this comparison.
-Firstly, ~\autoref{tab:breakdown_UAV} shows the breakdown of arbitrary attacks that were used to measure the performance of both the IDS, along with how the CPS responded to it.
+The attacks - data mutation, branch flipping and artificial delay insertion - described in this section are the arbitrary attacks used by ARTINALI in their experiments. As \ac{CORGIDS} did not previously use fault injections, therefore, only arbitrary attacks from ARTINALI are being considered for this comparison.
+Firstly, ~\autoref{tab:breakdown_UAV} shows the breakdown of arbitrary attacks that were used to measure the performance of both the \ac{IDS}, along with how the \ac{CPS} responded to it.
 
 \begin{table}
 \centering
-  \caption{Breakdown of arbitrary attacks for UAV platform}
+  \caption{Breakdown of arbitrary attacks for \ac{UAV} platform}
   \label{tab:breakdown_UAV}
   \scalebox{1}{
   \begin{tabular}{|c|c|c|c|c|c|}
@@ -104,11 +104,11 @@ Firstly, ~\autoref{tab:breakdown_UAV} shows the breakdown of arbitrary attacks t
 }
 \end{table}
 
-Secondly, ~\autoref{tab:ARTINALI_UAV_arbitrary}, ~\autoref{tab:CORGIDS_UAV_arbitrary} show the result of arbitrary attacks on both the IDS. For data mutation and branch flipping attacks, it was observed that CORGIDS achieved fewer FP and FN, however for artificial delay insertion ARTINALI had fewer FN.
+Secondly, ~\autoref{tab:ARTINALI_UAV_arbitrary}, ~\autoref{tab:CORGIDS_UAV_arbitrary} show the result of arbitrary attacks on both the \ac{IDS}. For data mutation and branch flipping attacks, it was observed that \ac{CORGIDS} achieved fewer \ac{FP} and \ac{FN}, however for artificial delay insertion ARTINALI had fewer \ac{FN}.
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by ARTINALI for arbitrary attacks on UAV platform}
+  \caption{Results of intrusion detection by ARTINALI for arbitrary attacks on \ac{UAV} platform}
   \label{tab:ARTINALI_UAV_arbitrary}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
@@ -127,7 +127,7 @@ Secondly, ~\autoref{tab:ARTINALI_UAV_arbitrary}, ~\autoref{tab:CORGIDS_UAV_arbit
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by CORGIDS for arbitrary attacks on UAV platform}
+  \caption{Results of intrusion detection by \ac{CORGIDS} for arbitrary attacks on \ac{UAV} platform}
   \label{tab:CORGIDS_UAV_arbitrary}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
@@ -145,31 +145,31 @@ Secondly, ~\autoref{tab:ARTINALI_UAV_arbitrary}, ~\autoref{tab:CORGIDS_UAV_arbit
 \end{table}
 
 
-In data mutation attacks, data variables were randomly mutated and when ARTINALI was used for intrusion detection, it was found that D\textbar E and D\textbar T invariants detected some anomalies. That was because these invariants were capable of finding the change that occurred in the data variable at run-time when compared to the invariants which were generated while training. However, E\textbar T invariant didn't show much of change during this attack due to the fact that the relation of the functions/events that were called remained almost the same. Having said that, ARTINALI led to a higher FP\% and FN\%, as it observes the value assigned to the variable and not the correlation or pattern exhibited by these data values. On the other hand, as CORGIDS uses the behavior/correlation exhibited by the CPS to detect intrusion, it led to better performance. Though in some cases, data variables which were basically function variables were mutated, it led to few anomaly detection as the change in function variables propagated ultimately leading to change in physical variables.
+In data mutation attacks, data variables were randomly mutated and when ARTINALI was used for intrusion detection, it was found that D\textbar E and D\textbar T invariants detected some anomalies. That was because these invariants were capable of finding the change that occurred in the data variable at run-time when compared to the invariants which were generated while training. However, E\textbar T invariant didn't show much of change during this attack due to the fact that the relation of the functions/events that were called remained almost the same. Having said that, ARTINALI led to a higher \ac{FP}\% and \ac{FN}\%, as it observes the value assigned to the variable and not the correlation or pattern exhibited by these data values. On the other hand, as \ac{CORGIDS} uses the behavior/correlation exhibited by the \ac{CPS} to detect intrusion, it led to better performance. Though in some cases, data variables which were basically function variables were mutated, it led to few anomaly detection as the change in function variables propagated ultimately leading to change in physical variables.
 
-In branch flipping attack, due to change in the branch that was executed in the function/event, it led to the execution of different functions than expected. This attack led to a use case where the events which should have been called and were used for generating invariant for ARTINALI, were not executed. Therefore in the system trace, those particular D\textbar E invariants were missing which often lead to mislabeling of an anomalous trace to be benign. Similar was the case for E\textbar T invariants, as the functions/events that were called were not monitored in the ARTINALI intrusion detection model. However, the D\textbar T invariants depicted the change because the change in the function execution led to a different value to a be assigned to the monitored data variable. CORGIDS, on the other hand, detected the attacks based on the change in the values of data variables leading to change in physical variables or physical variables itself. As the data variables did not change as required by the behavioral model deduced by CORGIDS, it led to flagging the current trace as faulty.
+In branch flipping attack, due to change in the branch that was executed in the function/event, it led to the execution of different functions than expected. This attack led to a use case where the events which should have been called and were used for generating invariant for ARTINALI, were not executed. Therefore in the system trace, those particular D\textbar E invariants were missing which often lead to mislabeling of an anomalous trace to be benign. Similar was the case for E\textbar T invariants, as the functions/events that were called were not monitored in the ARTINALI intrusion detection model. However, the D\textbar T invariants depicted the change because the change in the function execution led to a different value to a be assigned to the monitored data variable. \ac{CORGIDS}, on the other hand, detected the attacks based on the change in the values of data variables leading to change in physical variables or physical variables itself. As the data variables did not change as required by the behavioral model deduced by \ac{CORGIDS}, it led to flagging the current trace as faulty.
 
-Artificial delay insertion attacks exploited the E\textbar T and D\textbar T invariants from ARTINALI which are responsible of measuring how the monitored events are executed (noting the time difference between them) and how the values of data variable change with respect to time, respectively showed considerable difference than the intrusion detection model that was used by ARTINALI. This is the reason that ARTINALI was able to detect these attacks with lower FN\%. CORGIDS, on the other hand, used "flightTime" as one of its physical variables which essentially recorded the time since the UAV started its current flight. Due to change in the pattern of "flightTime" during the attack as compared to the training traces used for generating the intrusion detection model, it led to the detection of attack in some cases, which led to higher FN\% for CORGIDS.
+Artificial delay insertion attacks exploited the E\textbar T and D\textbar T invariants from ARTINALI which are responsible of measuring how the monitored events are executed (noting the time difference between them) and how the values of data variable change with respect to time, respectively showed considerable difference than the intrusion detection model that was used by ARTINALI. This is the reason that ARTINALI was able to detect these attacks with lower \ac{FN}\%. \ac{CORGIDS}, on the other hand, used "flightTime" as one of its physical variables which essentially recorded the time since the \ac{UAV} started its current flight. Due to change in the pattern of "flightTime" during the attack as compared to the training traces used for generating the intrusion detection model, it led to the detection of attack in some cases, which led to higher \ac{FN}\% for \ac{CORGIDS}.
 
 
-\section{Comparison on SAP Platform}
-As stated above, SAP platform was common in both ARTINALI and CORGIDS, which means that we didn't have to select the data and the events required by ARTINALI for constructing its IDS, as they were already present from the study conducted in ~\cite{aliabadi2017artinali}. Also, for CORGIDS we had already established the physical invariants that would be used for intrusion detection in ~\autoref{sec6:Evaluation}, so we continued using those for this comparison. Now, coming on to the attacks which were used to gauge the performance of the two IDS. ARTINALI's targeted attacks on SAP platform were CGM Spoofing and Basal Tampering, it was observed that they were the same targeted attacks that used for the purpose of this study in ~\autoref{ch:Attacks} (Glucose Spoofing and Insulin Tampering). Therefore, for the targeted attacks category, only two attacks had to be performed. On the other hand, as CORGIDS did not perform any arbitrary attacks and ARTINALI had used them in their research, we decided to also use those attacks for the comparison.
+\section{Comparison on \ac{SAP} Platform}
+As stated above, \ac{SAP} platform was common in both ARTINALI and \ac{CORGIDS}, which means that we didn't have to select the data and the events required by ARTINALI for constructing its \ac{IDS}, as they were already present from the study conducted in ~\cite{aliabadi2017artinali}. Also, for \ac{CORGIDS} we had already established the physical invariants that would be used for intrusion detection in ~\autoref{sec6:Evaluation}, so we continued using those for this comparison. Now, coming on to the attacks which were used to gauge the performance of the two \ac{IDS}. ARTINALI's targeted attacks on \ac{SAP} platform were \ac{CGM} Spoofing and Basal Tampering, it was observed that they were the same targeted attacks that used for the purpose of this study in ~\autoref{ch:Attacks} (Glucose Spoofing and Insulin Tampering). Therefore, for the targeted attacks category, only two attacks had to be performed. On the other hand, as \ac{CORGIDS} did not perform any arbitrary attacks and ARTINALI had used them in their research, we decided to also use those attacks for the comparison.
 
 We first discuss the details of the targeted attacks followed by their results, which is followed by a similar analysis for the arbitrary attacks.
 
 \subsection{Targeted attacks}
-We perform 2 targeted attacks on SAP platform and then use the two IDS - ARTINALI and CORGIDS - one by one to detect intrusion. The attacks carried out are CGM Spoofing or Glucose Spoofing, and Basal Tampering or Insulin Tampering. The results shown in ~\autoref{tab:ARTINALI_SAP_targeted} and ~\autoref{tab:CORGIDS_SAP_targeted} are achieved after 5 fold cross-validation.
+We perform 2 targeted attacks on \ac{SAP} platform and then use the two \ac{IDS} - ARTINALI and \ac{CORGIDS} - one by one to detect intrusion. The attacks carried out are \ac{CGM} Spoofing or Glucose Spoofing, and Basal Tampering or Insulin Tampering. The results shown in ~\autoref{tab:ARTINALI_SAP_targeted} and ~\autoref{tab:CORGIDS_SAP_targeted} are achieved after 5 fold cross-validation.
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by ARTINALI for targeted attack on SAP platform}
+  \caption{Results of intrusion detection by ARTINALI for targeted attack on \ac{SAP} platform}
   \label{tab:ARTINALI_SAP_targeted}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
     \toprule
     \textbf{Attack}&\textbf{FP(\%)}&\textbf{FN(\%)}\\
     \hline
-    CGM Spoofing & 18.50 & 4.20\\
+    \ac{CGM} Spoofing & 18.50 & 4.20\\
     \hline
     Basal Tampering  & 15.50 & 6.50\\
     \hline
@@ -180,14 +180,14 @@ We perform 2 targeted attacks on SAP platform and then use the two IDS - ARTINAL
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by CORGIDS for targeted attack on SAP platform}
+  \caption{Results of intrusion detection by \ac{CORGIDS} for targeted attack on \ac{SAP} platform}
   \label{tab:CORGIDS_SAP_targeted}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
     \toprule
     \textbf{Attack}&\textbf{FP(\%)}&\textbf{FN(\%)}\\
     \hline
-    CGM Spoofing & 3.80 & 8.40\\
+    \ac{CGM} Spoofing & 3.80 & 8.40\\
     \hline
     Basal Tampering &  6.50 & 5.20\\
     \hline
@@ -197,19 +197,19 @@ We perform 2 targeted attacks on SAP platform and then use the two IDS - ARTINAL
 
 
 
-During the experiments, it was observed that ARTINALI only relies on the abnormalities in the invariants to detect intrusion. Therefore, if there is just one invariant broken, it marks it as an anomalous trace. However in CORGIDS, the minimum threshold to generate an alarm is maintained, which helps in minimizing the FP and FN, and hence increasing its performance. Also, ARTINALI works by taking into account the values of data variables encountered in the training trace and builds an IDS from that. It does not deduce the behavior/interconnections of data variables from the training data, which is the reason that higher FP and FN are observed for ARTINALI as compared to CORGIDS.
+During the experiments, it was observed that ARTINALI only relies on the abnormalities in the invariants to detect intrusion. Therefore, if there is just one invariant broken, it marks it as an anomalous trace. However in \ac{CORGIDS}, the minimum threshold to generate an alarm is maintained, which helps in minimizing the \ac{FP} and \ac{FN}, and hence increasing its performance. Also, ARTINALI works by taking into account the values of data variables encountered in the training trace and builds an \ac{IDS} from that. It does not deduce the behavior/interconnections of data variables from the training data, which is the reason that higher \ac{FP} and \ac{FN} are observed for ARTINALI as compared to \ac{CORGIDS}.
 
-As stated previously, the attacks carried out were the same for both ARTINALI and CORGIDS and both the techniques are able to detect the attacks, though with different FP and FN rate. The difference in the FP and FN however arose due to the difference in ARTINALI and CORGIDS approach. ARTINALI works by collecting all the values of data variables provided in the training traces. CORGIDS, however, tries to learn the behavior of the system from the training traces. It is not dependent on particular values of variables, rather it tries build a bigger picture and deduces the behavior and not the value of the variable, which is important in CPS. 
+As stated previously, the attacks carried out were the same for both ARTINALI and \ac{CORGIDS} and both the techniques are able to detect the attacks, though with different \ac{FP} and \ac{FN} rate. The difference in the \ac{FP} and \ac{FN} however arose due to the difference in ARTINALI and \ac{CORGIDS} approach. ARTINALI works by collecting all the values of data variables provided in the training traces. \ac{CORGIDS}, however, tries to learn the behavior of the system from the training traces. It is not dependent on particular values of variables, rather it tries build a bigger picture and deduces the behavior and not the value of the variable, which is important in \ac{CPS}. 
 
-For instance in the CGM spoofing attack, the values of the blood glucose values are manipulated which leads to wrong dosage of insulin being calculated by the controller. When ARTINALI was used for detecting intrusion, it lead to lower detection rate which was mainly due to the fact that the altered values were not that deviated from the original values. This lead to less variation in D\textbar E and D\textbar T invariants, as the data part(blood glucose) values remained almost same. On the other hand, the E\textbar T invariant from ARTINALI remained unaffected as there was no change in execution flow of the CPS. CORGIDS, however, detected intrusion for most of the cases as the change in blood glucose value led to change in the correlation with the other physical variables. Similar observation was made for the basal tampering attack, where blood glucose manipulations were replaced by insulin dosage.
+For instance in the \ac{CGM} spoofing attack, the values of the blood glucose values are manipulated which leads to wrong dosage of insulin being calculated by the controller. When ARTINALI was used for detecting intrusion, it lead to lower detection rate which was mainly due to the fact that the altered values were not that deviated from the original values. This lead to less variation in D\textbar E and D\textbar T invariants, as the data part(blood glucose) values remained almost same. On the other hand, the E\textbar T invariant from ARTINALI remained unaffected as there was no change in execution flow of the \ac{CPS}. \ac{CORGIDS}, however, detected intrusion for most of the cases as the change in blood glucose value led to change in the correlation with the other physical variables. Similar observation was made for the basal tampering attack, where blood glucose manipulations were replaced by insulin dosage.
 
 
 \subsection{Arbitrary attacks}
-In this subsection we discuss the arbitrary attacks and their effect on SAP platform with the performance results of ARTINALI and CORGIDS. The arbitrary attacks were used by ARTINALI to measure its performance, hence for completeness and fairness, we test both the IDS on these attacks. 3 attacks were carried out namely, data mutation, branch flipping and artificial delay insertion. A break up of the attacks and how the system responded to them is shown in ~\autoref{tab:ARBITRARY_SAP}.
+In this subsection we discuss the arbitrary attacks and their effect on \ac{SAP} platform with the performance results of ARTINALI and \ac{CORGIDS}. The arbitrary attacks were used by ARTINALI to measure its performance, hence for completeness and fairness, we test both the \ac{IDS} on these attacks. 3 attacks were carried out namely, data mutation, branch flipping and artificial delay insertion. A break up of the attacks and how the system responded to them is shown in ~\autoref{tab:ARBITRARY_SAP}.
 
 \begin{table}
 \centering
-  \caption{Arbitrary attacks on SAP platform and its response}
+  \caption{Arbitrary attacks on \ac{SAP} platform and its response}
   \label{tab:ARBITRARY_SAP}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|c|c|c|}
@@ -226,11 +226,11 @@ In this subsection we discuss the arbitrary attacks and their effect on SAP plat
 }
 \end{table}
 
-The result of arbitrary attacks being detected by both the IDS, on SAP platform are shown in ~\autoref{tab:ARTINALI_SAP_ARBITRARY} and ~\autoref{tab:CORGIDS_SAP_ARBITRARY}.
+The result of arbitrary attacks being detected by both the \ac{IDS}, on \ac{SAP} platform are shown in ~\autoref{tab:ARTINALI_SAP_ARBITRARY} and ~\autoref{tab:CORGIDS_SAP_ARBITRARY}.
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by ARTINALI for Arbitrary attacks on SAP platform}
+  \caption{Results of intrusion detection by ARTINALI for Arbitrary attacks on \ac{SAP} platform}
   \label{tab:ARTINALI_SAP_ARBITRARY}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
@@ -250,7 +250,7 @@ The result of arbitrary attacks being detected by both the IDS, on SAP platform 
 
 \begin{table}
 \centering
-  \caption{Results of intrusion detection by CORGIDS for Arbitrary attacks on SAP platform}
+  \caption{Results of intrusion detection by \ac{CORGIDS} for Arbitrary attacks on \ac{SAP} platform}
   \label{tab:CORGIDS_SAP_ARBITRARY}
   \scalebox{0.9}{
   \begin{tabular}{|c|c|c|}
@@ -267,11 +267,11 @@ The result of arbitrary attacks being detected by both the IDS, on SAP platform 
 }
 \end{table}
 
-The results show that CORGIDS performed better in data mutation and branch flipping attack as compared to ARTINALI. It was mainly because ARTINALI does not take into account the change in the behavior, rather it works with the change in the value of particular data variables. Therefore, in the case of data mutation attack, if the variables that were being tempered did not belong to the variables that were used in intrusion detection, the attack went by unnoticed. This scenario was present mostly for the D\textbar T and D\textbar E invariants which were the part of those invariants which used data variables for intrusion detection. E\textbar T invariants did not change significant as the events or the timeline was not effected by this attack. However, for CORGIDS even if physical variables that are used to detect intrusion were not mutated, due to the trickling effect the, change in data variable led to in some cases a change in the physical variable which was ultimately detected by CORGIDS.
+The results show that \ac{CORGIDS} performed better in data mutation and branch flipping attack as compared to ARTINALI. It was mainly because ARTINALI does not take into account the change in the behavior, rather it works with the change in the value of particular data variables. Therefore, in the case of data mutation attack, if the variables that were being tempered did not belong to the variables that were used in intrusion detection, the attack went by unnoticed. This scenario was present mostly for the D\textbar T and D\textbar E invariants which were the part of those invariants which used data variables for intrusion detection. E\textbar T invariants did not change significant as the events or the timeline was not effected by this attack. However, for \ac{CORGIDS} even if physical variables that are used to detect intrusion were not mutated, due to the trickling effect the, change in data variable led to in some cases a change in the physical variable which was ultimately detected by \ac{CORGIDS}.
 
-Similar result was observed for branch flipping attacks where randomly the branch conditions were flipped to lead to an abnormal execution flow in the CPS. This attack had an effect on all the invariants for ARTINALI -  D\textbar E, E\textbar T and D\textbar T, because the change in execution flow led to change in the events that were being called and ultimately the data variables being captured. These events and data variables in some cases were different from the ones that were being monitored, thus leading to false negative. CORGIDS, on the other hand, as tracked the physical variables, change in the execution flow led to change in their values, as opposed to what was expected, thus flagging the current state.
+Similar result was observed for branch flipping attacks where randomly the branch conditions were flipped to lead to an abnormal execution flow in the \ac{CPS}. This attack had an effect on all the invariants for ARTINALI -  D\textbar E, E\textbar T and D\textbar T, because the change in execution flow led to change in the events that were being called and ultimately the data variables being captured. These events and data variables in some cases were different from the ones that were being monitored, thus leading to false negative. \ac{CORGIDS}, on the other hand, as tracked the physical variables, change in the execution flow led to change in their values, as opposed to what was expected, thus flagging the current state.
 
-On the other hand, for the artificial delay insertion attack, it was observed that ARTINALI achieved better performance than CORGIDS. It was because of the lesser effect of the time change on variables that were monitored by CORGIDS. In this attack the E\textbar T and D\textbar T invariants were effected as they monitor the time change with events and data variables respectively. D\textbar E invariants however showed almost no change during this attack. Therefore, as ARTINALI also uses time invariants to detect intrusion, therefore it was able to detect intrusion easily for this attack. CORGIDS, however, achieved greater FP\% as time was not one of the physical variables that was being monitored. This led to an incorrect correlation calculation which was seen to tip even the benign execution as faulty.
+On the other hand, for the artificial delay insertion attack, it was observed that ARTINALI achieved better performance than \ac{CORGIDS}. It was because of the lesser effect of the time change on variables that were monitored by \ac{CORGIDS}. In this attack the E\textbar T and D\textbar T invariants were effected as they monitor the time change with events and data variables respectively. D\textbar E invariants however showed almost no change during this attack. Therefore, as ARTINALI also uses time invariants to detect intrusion, therefore it was able to detect intrusion easily for this attack. \ac{CORGIDS}, however, achieved greater \ac{FP}\% as time was not one of the physical variables that was being monitored. This led to an incorrect correlation calculation which was seen to tip even the benign execution as faulty.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
