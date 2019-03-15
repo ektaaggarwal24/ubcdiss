@@ -32,6 +32,7 @@
 % For submission to GPS
 \documentclass[gpscopy,onehalfspacing,11pt]{ubcdiss}
 
+
 % For your own copies (looks nicer)
 % \documentclass[balanced,twoside,11pt]{ubcdiss}
 
@@ -72,6 +73,7 @@
 %% \begin{dinglist}{##}\item... or dingautolist (which auto-increments)
 %% to create a bullet list with the provided character.
 \usepackage{pifont}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Configure fonts for XeTeX / XeLaTeX using the fontspec package.
@@ -241,6 +243,12 @@
 %% Change \nocitations if you'd like some text shown where there
 %% are no citations found (e.g., pulled in with \nocite{xxx})
 \newcommand{\nocitations}{\relax}
+
+
+%\newcommand{\ekta}{\authornote{EA: #1}}
+%\newcommand{\commentthis}[1]{}
+%\newcommand{\ekta}[1]{\authornote{EA: #1}}
+
 %%\newcommand{\nocitations}{No citations}
 %%
 %\renewcommand*{\backref}[1]{}% necessary for backref < 1.33
@@ -294,6 +302,11 @@
 %\usepackage{algorithm}
 %\usepackage{algorithmic}
 
+\usepackage{amsmath}
+\usepackage[ruled,vlined]{algorithm2e}
+\DontPrintSemicolon
+\newcommand{\To}{\mbox{\upshape\bfseries to}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -332,9 +345,9 @@
 \submissionyear{2019}
 
 % details of your examining committee
-\examiningcommittee{Andre Ivanov, Electrical and Computer Engineering}{Supervisor}
-\examiningcommittee{Karthik Pattabiraman, Electrical and Computer Engineering}{Supervisor}
-%\examiningcommittee{Mary Maker, Materials Engineering}%
+\examiningcommittee{Andr\'e Ivanov, Electrical and Computer Engineering}{Supervisor}
+\examiningcommittee{Karthik Pattabiraman, Electrical and Computer Engineering}{Co-supervisor}
+\examiningcommittee{Sathish Gopalakrishnan,  Electrical and Computer Engineering}{Examining committee}%
 %    {Supervisory Committee Member}
 %\examiningcommittee{Nebulous Name, Department}{Supervisory Committee Member}
 %\examiningcommittee{Magnus Monolith, Other Department}{Additional Examiner}
